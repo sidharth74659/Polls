@@ -1,0 +1,15 @@
+<h1>{{ quest.question_text }}</h1>
+
+<ul>
+{% for c in quest.choice_set.all %}
+    <li>
+        <!-- {{ c.choice_text }} -- {{ c.votes }} vote{{ c.votes|pluralize }} -->
+        {{ c.choice_text }} -- {{ c.votes }} votes
+
+    </li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' quest.id %}">Vote again?</a>
+<a href="{% url 'polls:index' %}">Go to Home</a>
+

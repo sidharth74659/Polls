@@ -1,0 +1,43 @@
+
+
+
+#For Detail.html
+
+<h1>{{ q.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' q.id %}" method="post">
+{% csrf_token %}
+
+{% for choice in q.choice_set.all %}
+        <input type="radio" name="choice" id="choice" value="{{ choice.id }}">
+        <label for="choice">{{ choice.choice_text }}</label><br>
+    {% empty %}
+        <h3>&nbsp; Sorry, no choices for this question</h3>
+{% endfor %}
+    <input type="submit" value="Vote">
+</form>
+
+<!-- 
+    {% for athlete in athlete_list %}
+    <li>{{ athlete.name }}</li>
+{% empty %}
+    <li>Sorry, no athletes in this list.</li>
+{% endfor %}
+</ul>
+ -->
+
+
+    <!-- <input type="radio" name="choice" id="choice" value="{{ c.id }}"> -->
+    <!-- <label for="choice">{{ c.choice_text }}</label><br>  -->
+
+
+    
+        <!-- for a single app,look below -->
+        <!-- <li><a href="polls/{{ q.id }}/">{{ q.question_text }}</a></li> -->
+        <!-- when working on multiple apps,look below -->
+
+
+
+        <a href="{% url 'polls:index' quest.id %}">Go to home</a>

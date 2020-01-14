@@ -1,0 +1,20 @@
+<!-- For another code look in quest.html -->
+<h1>{{ quest.question_text }}</h1>
+
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'polls:vote' quest.id %}" method="post">
+{% csrf_token %}
+{% if quest.choice_set.all %}
+{% for c in quest.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ c.id }}">
+    <label for="choice{{ forloop.counter }}">{{ c.choice_text }}</label><br> 
+{% endfor %}
+<br>
+<input type="submit" value="Vote">
+{% else %} 
+<h3> No choices Here </h3>
+{% endif %}
+</form>

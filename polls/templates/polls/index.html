@@ -1,0 +1,12 @@
+<h1> Questions </h1>
+{% if quest %}
+    <ul>
+        {% for q in quest %}
+            <a href="{% url 'polls:detail' q.id %}" >{{forloop.counter}}- {{ q.question_text }}</a><br>
+        
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
